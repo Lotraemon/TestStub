@@ -9,22 +9,22 @@ import java.util.Random;
 public class ApiController {
 
     Random rand = new Random();
-    private final int delay = rand.nextInt(2000 - 1000 + 1) + 1000;
+    private int getRandomDelay(){
+        return  rand.nextInt(1000) + 1000;}
 
     @GetMapping("/get")
     /* public String get() {
-        //"{"login":"Login1","status":"ok"}" нужно экранировать
-        return "{\"login\":\"Login1\",\"status\":\"ok\"}";
+        return "{\"login\":\"Login1\",\"status\":\"ok\"}"; //экранировать
     }*/
 
     public GetResponse get() throws InterruptedException {
-        Thread.sleep(delay);
+        Thread.sleep(getRandomDelay());
         return new GetResponse();
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public PostResponse post(@RequestBody PostRequest postRequest) throws InterruptedException {
-        Thread.sleep(delay);
+        Thread.sleep(getRandomDelay());
         return new PostResponse(postRequest.getLogin(), postRequest.getPassword());
     }
 }
