@@ -34,7 +34,7 @@ public class ApiController {
     public ResponseEntity<User> post(@RequestBody @Valid User user) {
         getRandomDelay();
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .status(HttpStatus.OK)
                 .body(new User(user.getLogin(), user.getPassword()));
 
     }
