@@ -8,7 +8,7 @@ import java.sql.*;
 
 @Repository
 public class DataBaseWorker {
-    private static final String URL = "jdbc:postgresql://localhost:5432/mydb";
+    private static final String URL = "jdbc:postgresql://192.168.0.102:5432/mydb";
     private static final String USER = "user";
     private static final String PASSWORD = "password";
 
