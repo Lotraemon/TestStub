@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException; //искл�
 import org.springframework.web.bind.annotation.ExceptionHandler; //перехват исключений
 import org.springframework.web.bind.annotation.RestControllerAdvice; //глобальный обработчик исключений
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +38,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ex.getMessage());
+    }
+    @ExceptionHandler(SQLException.class)
+    public ResponseEntity<String> handleSQLException(SQLException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Database error: " + e.getMessage() );
     }
 }
